@@ -1,3 +1,6 @@
+/*
+ *generate a list of CJK unified Ideographs' ASCII unicode number
+ */
 #include <stdio.h>
 int main(int argc, char **argv){
 	int i = 0x4E00;

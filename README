@@ -1,0 +1,7 @@
+I want to create a database for the orders of strokes of Chinese characters.
+
+There are some databases you can find it on Internet intended for this, 
+but they records only five kinds of strokes. The Unicode defines 36 strokes.
+So I want create a this kind of database which I think is very useful for 
+font designers.
+

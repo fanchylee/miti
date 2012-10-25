@@ -30,55 +30,55 @@
 	(#x4E1C 东 (H PZ SG P D))
 	(#x4E1D 丝 (PZ PZ PZ PZ H))
 	(#x4E1E 丞 (HP SG HP P N H))
-	(#x4E1F 丟 (H H S H PZ D)
-	(#x4E20 丠 (#x5317 H)
+	(#x4E1F 丟 (H H S H PZ D))
+	(#x4E20 丠 (#x5317 H))
 	(#x4E21 両 (
-	(#x4E22 丢 (P H S H PZ D)
+	(#x4E22 丢 (P H S H PZ D))
 	(#x4E23 丣 
-	(#x4E24 两 
-	(#x4E25 严 
-	(#x4E26 並 
+	(#x4E24 两 (H S HZG P D P D))
+	(#x4E25 严 (H S S D P H SP))
+	(#x4E26 並 (#x4E37 H S S D P H))
 	(#x4E27 丧 
-	(#x4E28 丨 
-	(#x4E29 丩 
-	(#x4E2A 个 
-	(#x4E2B 丫 
-	(#x4E2C 丬 
+	(#x4E28 丨 (S)) 
+	(#x4E29 丩 (ST S))
+	(#x4E2A 个 (P N S))
+	(#x4E2B 丫 (#x4E37 S))
+	(#x4E2C 丬 (D T S))
 	(#x4E2D 中 
 	(#x4E2E 丮 
 	(#x4E2F 丯 
-	(#x4E30 丰 
+	(#x4E30 丰 (#x4E09 S))
 	(#x4E31 丱 
 	(#x4E32 串 
 	(#x4E33 丳 
 	(#x4E34 临 
 	(#x4E35 丵 
-	(#x4E36 丶 
-	(#x4E37 丷 
+	(#x4E36 丶 (D))
+	(#x4E37 丷 (D P))
 	(#x4E38 丸 
 	(#x4E39 丹 
 	(#x4E3A 为 
-	(#x4E3B 主 
-	(#x4E3C 丼 
+	(#x4E3B 主 (D #x738B))
+	(#x4E3C 丼 (#x4E95 D))
 	(#x4E3D 丽 
 	(#x4E3E 举 
-	(#x4E3F 丿 
-	(#x4E40 乀 
-	(#x4E41 乁 
-	(#x4E42 乂 
-	(#x4E43 乃 
-	(#x4E44 乄 
-	(#x4E45 久 
+	(#x4E3F 丿 (SP))
+	(#x4E40 乀 (TN))
+	(#x4E41 乁 (H N))
+	(#x4E42 乂 (P N))
+	(#x4E43 乃 (HZZZG P))
+	(#x4E44 乄 (PG D))
+	(#x4E45 久 (P HP P))
 	(#x4E46 乆 
 	(#x4E47 乇 
-	(#x4E48 么 
-	(#x4E49 义 
-	(#x4E4A 乊 
-	(#x4E4B 之 
-	(#x4E4C 乌 
+	(#x4E48 么 (P PZ D))
+	(#x4E49 义 (D #x4E42))
+	(#x4E4A 乊 (P #x4E37))
+	(#x4E4B 之 (D HP N))
+	(#x4E4C 乌 (P HZG SZWG H))
 	(#x4E4D 乍 
-	(#x4E4E 乎 
-	(#x4E4F 乏 
+	(#x4E4E 乎 (P #x4E37 H SG))
+	(#x4E4F 乏 (P #x4E4B)) 
 	(#x4E50 乐 
 	(#x4E51 乑 
 	(#x4E52 乒 
@@ -89,13 +89,13 @@
 	(#x4E57 乗 
 	(#x4E58 乘 
 	(#x4E59 乙 
-	(#x4E5A 乚 
-	(#x4E5B 乛 
+	(#x4E5A 乚 (SWG))
+	(#x4E5B 乛 (HG))
 	(#x4E5C 乜 
 	(#x4E5D 九 
 	(#x4E5E 乞 
 	(#x4E5F 也 
-	(#x4E60 习 
+	(#x4E60 习 (D T HZG))
 	(#x4E61 乡 
 	(#x4E62 乢 
 	(#x4E63 乣 
@@ -132,14 +132,14 @@
 	(#x4E82 亂 
 	(#x4E83 亃 
 	(#x4E84 亄 
-	(#x4E85 亅 
+	(#x4E85 亅 (SG))
 	(#x4E86 了 
 	(#x4E87 亇 
 	(#x4E88 予 
 	(#x4E89 争 
 	(#x4E8A 亊 
 	(#x4E8B 事 
-	(#x4E8C 二 
+	(#x4E8C 二 (H H))
 	(#x4E8D 亍 
 	(#x4E8E 于 
 	(#x4E8F 亏 
@@ -148,7 +148,7 @@
 	(#x4E92 互 
 	(#x4E93 亓 
 	(#x4E94 五 
-	(#x4E95 井 
+	(#x4E95 井 (H H SP S)) 
 	(#x4E96 亖 
 	(#x4E97 亗 
 	(#x4E98 亘 
@@ -159,10 +159,10 @@
 	(#x4E9D 亝 
 	(#x4E9E 亞 
 	(#x4E9F 亟 
-	(#x4EA0 亠 
-	(#x4EA1 亡 
-	(#x4EA2 亢 
-	(#x4EA3 亣 
+	(#x4EA0 亠 (D H))
+	(#x4EA1 亡 (#x4EA0 SZ))
+	(#x4EA2 亢 (#x4EA0 #x51E0))
+	(#x4EA3 亣 (#x4EA0 #x4E0C))
 	(#x4EA4 交 
 	(#x4EA5 亥 
 	(#x4EA6 亦 
@@ -9610,7 +9610,7 @@
 	(#x7388 玈 
 	(#x7389 玉 
 	(#x738A 玊 
-	(#x738B 王 
+	(#x738B 王 (H H S H)) 
 	(#x738C 玌 
 	(#x738D 玍 
 	(#x738E 玎 

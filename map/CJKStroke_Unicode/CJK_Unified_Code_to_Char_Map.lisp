@@ -1,4 +1,4 @@
-(define *CJK_Unified_Code_to_Char_Map* (quote (
+(
 	(#x4E00 一)
 	(#x4E01 丁)
 	(#x4E02 丂)
@@ -20991,4 +20991,4 @@
 	(#x9FFD 鿽)
 	(#x9FFE 鿾)
 	(#x9FFF 鿿)
-)))
+)

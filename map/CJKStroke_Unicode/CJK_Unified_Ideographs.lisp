@@ -1,4 +1,4 @@
-(define *CJK_Unified_Ideographs* (quote (
+(
 	(#x4E00 一 (H))
 	(#x4E01 丁 (H SG))
 	(#x4E02 丂 (H SZWG))
@@ -20991,4 +20991,4 @@
 	(#x9FFD 鿽 ())
 	(#x9FFE 鿾 ())
 	(#x9FFF 鿿 ())
-)))
+)

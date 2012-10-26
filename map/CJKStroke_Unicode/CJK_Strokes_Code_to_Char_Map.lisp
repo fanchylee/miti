@@ -1,4 +1,4 @@
-(
+(define *CJK_Strokes_Code_to_Char_Map* (quote (
 	(#x31C0 T	 ) 
 	(#x31C1 WG	 )
 	(#x31C2 XG	 )
@@ -35,4 +35,4 @@
 	(#x31E1 HZZZG	㇡)
 	(#x31E2 PG	㇢)
 	(#x31E3 Q	㇣)
-)
+)))

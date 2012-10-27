@@ -1,9 +1,9 @@
 #! /usr/bin/env racket 
 #lang racket
 
-(require "./evlsk.scm")
+(require "./stroke.scm")
 (define rpl (lambda () 
-	(let ([str (format "~a" (evlsk (read)))])
+	(let ([str (format "~a" (unisk (read)))])
 		(printf "~a\n" (substring str 1 (- (string-length str) 1)))
 		(rpl))))
 (rpl)

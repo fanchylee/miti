@@ -2,7 +2,7 @@
 ;interprete the CJK unicode integer to stroke orders
 ;
 [module stroke racket/base
-	(provide unisk updatestroke savemap printloop)
+	(provide unisk updatestroke savemap printloop usk)
 (define *CJK_Unified_Ideographs* (call-with-input-file "./CJK_Unified_Ideographs.lisp" (lambda (in) (read in))))
 
 (define  getstroke
@@ -85,12 +85,29 @@
 			(printloop out (cdr db))]]))
 
 (define savemap
-	(lambda (db) (call-with-output-file "./CJK_Unified_Ideographs.lisp" #:exists 'replace
-		(lambda (out) 
-		(begin
-			[fprintf out "(\n" ]
-			[printloop out db]
-			[fprintf out "i)" ]
-		)))))
+	(lambda (db . dbpath) 
+	(cond
+		[(null? dbpath) (savemap db "./CJK_Unified_Ideographs.lisp")]
 
+		[else
+		(let ([dbpath (car dbpath)])
+			(if
+			(string? dbpath)
+			(call-with-output-file dbpath #:exists 'replace (lambda (out) (begin
+				[fprintf out "(\n" ]
+				[printloop out db]
+				[fprintf out ")" ])))
+			(error "not a string, specify a string for the path")))])))
+
+(define usk (lambda (uni sk . dbspec)
+	(cond
+		[(null? dbspec)
+		(usk uni sk "./CJK_Unified_Ideographs.lisp" *CJK_Unified_Ideographs*)]
+
+		[else
+		(let ([dbspec1 (car dbspec)] [dbspec2 (car (cdr dbspec))])
+			(let 
+			([dbpath (cond ([string? dbspec1] dbspec1) ([string? dbspec2] dbspec2) (else (error "not path specified")))]
+			[db (cond ([list? dbspec1] dbspec1) ([list? dbspec2] dbspec2) (else (error "no list specified")))])
+			(savemap (updatestroke uni sk db) dbpath)))])))
 ]

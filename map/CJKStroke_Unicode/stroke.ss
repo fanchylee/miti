@@ -151,13 +151,13 @@
 
 (define update_default_map_with_stroke (lambda (code sk) (update_default_map (get_map_with_updated_stroke code sk))))
 
-(define u update_default_map_with_stroke)
-
 (define (save_default_map_to_default_path) (save_map *CJK_Unified_Ideographs*))
 
 (define save save_default_map_to_default_path)
 
 (define-syntax s (syntax-rules () ([_ CJKch] [selectsk (read (open-input-string (format "~a~a" (string #\# #\\) (quote CJKch))))])))
+
+(define-syntax u (syntax-rules () ([_ CJKch sk] [update_default_map_with_stroke (read (open-input-string (format "~a~a" (string #\# #\\) (quote CJKch)))) sk])))
 
 ;(define-syntax s select_stroke_in_default_map_with_charater)
 

@@ -1,0 +1,22 @@
+You need a scheme interpreter to run this program
+
+first, load the file
+
+(load "./stroke.ss")
+
+then, you can get the stroke order by as follows
+
+(unisk #x4E00)
+(unisk #\一)
+
+This will give the stroke orders of U+4E00, i.e, 一。You can see the output:
+
+'(H)
+
+H means stroke H，a horizon line。The CJK_Strokes_Code_to_Char_Map.lisp file has the name for the strokes Unicode defined.
+
+And, you can update the database with
+
+(ussk #x4E00 '(H) db)
+
+This will make 

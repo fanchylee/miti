@@ -1,0 +1,8 @@
+
+(load "./stroke.ss")
+(define rpl (lambda ()
+	(let ([str (format "~a" (select (read)))])
+		(printf "~a\n" (substring str 1 (- (string-length str) 1)))
+		(rpl))))
+
+(rpl)

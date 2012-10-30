@@ -1,7 +1,7 @@
 ;
 ;;(description "Apparently, I need utf8 support")
 ;
-(require-extension utf8)
+;(require-extension utf8)
 ;;
 ;
 ;;(description "Errors")
@@ -43,6 +43,14 @@
 		[(null? x) #f]
 		[(number? (car x)) #t] 
 		[else (hasnumber? (cdr x))])))
+
+(define haschar? (lambda (x)
+	(cond
+		[(null? x) #f]
+
+		[(char? (car x)) #t]
+
+		[else hasnumber? (cdr x)])))
 ;
 ;;;(description "find the stroke of a certain character") 
 ;;;(argument "uni" "a character or the unicode integer of the character")
@@ -72,9 +80,14 @@
 			
 			[(list? uni)
 			(cond 
-				[(not (hasnumber? uni)) uni]
+				[(not (or (hasnumber? uni) (haschar? uni))) uni]
+				
+				[(char? (car uni))
+				(append (selectsk (char->integer (car uni)) db) (selectsk (cdr uni) db))]
+
 				[(number? (car uni))
 				(append (selectsk (car uni) db) (selectsk (cdr uni) db))]
+
 				[else  (append (list (car uni)) (selectsk (cdr uni) db))]
 			)]
 			[else (error "illegal argument")]))])))
@@ -102,7 +115,7 @@
 		(get_map_with_updated_stroke code sk *CJK_Unified_Ideographs*)]
 
 		[else
-		(let ([db (car db)] [sk (integer_unicode_to_stroke sk)])
+		(let ([db (car db)] )
 		(cond 
 			[(null? db)
 			(error *ERR_NO_RECORD*)]

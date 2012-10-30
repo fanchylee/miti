@@ -162,5 +162,4 @@
 ;(define-syntax s select_stroke_in_default_map_with_charater)
 
 ;(define-syntax hexsk (syntax-rules () ([_ CJKunicodeHex] [selectsk (read (open-input-string (format "~a~a" (string #\# #\x) (quote CJKunicodeHex))))])))
-
 ;;

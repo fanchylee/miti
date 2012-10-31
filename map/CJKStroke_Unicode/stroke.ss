@@ -1,19 +1,32 @@
 ;
-;;(description "Apparently, I need utf8 support")
+;(description "use ikarus as the interpreter (in fact, it's a compiler)")
 ;
-;(require-extension utf8)
+
+;
+;;(description "libraries")
+;
+(import (rnrs))
 ;;
+
 ;
-;;(description "Errors")
+;;(description "transcoders (r6rs)")
+;
+(define transcoder (make-transcoder (utf-8-codec)))
+;;
+
+;
+;;(description "errors")
 ;
 (define *ERR_NO_RECORD* "Cannot find the character in the specified list")
 ;;
+
 ;
 ;;(description "local viariables")
 ;
 (define *Default_Map_Path* "./CJK_Unified_Ideographs.lisp")
 (define *CJK_Unified_Ideographs* (call-with-input-file *Default_Map_Path* (lambda (in) (read in))))
 ;;
+
 ;
 ;;(description "Functions")
 ;
@@ -24,18 +37,19 @@
 (define loadmap (lambda (dbpath)
 	(call-with-input-file dbpath (lambda (in) (read in)))))
 ;;;
+
 ;
 ;;;(description "internal function, get  stroke in a map")
 ;;;(argument "l" "a record in a map")
 ;
 (define getstroke
 	(lambda (l)
-	(car (cddr l))))
+	(car (cdr l))))
 ;;;
 
 (define newstrokerecord
 	(lambda (sk record)
-	(list (car record) (cadr record) sk)))
+	(list (car record) sk)))
 	
 
 (define hasnumber? (lambda (x) 
@@ -66,7 +80,7 @@
 		(let ([db (car db)])
 		(cond
 			[(null? db)
-			(error *ERR_NO_RECORD*)]
+			(display *ERR_NO_RECORD*)]
 	
 			[(number? uni) 
 			(let ([luni (car db)])
@@ -90,12 +104,11 @@
 
 				[else  (append (list (car uni)) (selectsk (cdr uni) db))]
 			)]
-			[else (error "illegal argument")]))])))
+			[else (display "illegal argument")]))])))
 ;;;
 
 (define (select_stroke_in_default_map uni) (selectsk uni))
 
-;(define s select_stroke_in_default_map)
 
 (define (integer_unicode_to_stroke lt) (cond
 	[(null? lt)
@@ -118,7 +131,7 @@
 		(let ([db (car db)] )
 		(cond 
 			[(null? db)
-			(error *ERR_NO_RECORD*)]
+			(display *ERR_NO_RECORD*)]
 			
 			[(null? code)
 			db]
@@ -133,14 +146,14 @@
 					(else (append [list lcode] [get_map_with_updated_stroke code sk  (cdr db)]))
 				))]
 
-			[else (error "illegal auguments")]))])))
+			[else (display "illegal auguments")]))])))
 
 (define (printloop out db)
 	(cond 
 		[(null? (cdr db)) (fprintf out "\t~a\n" (car db))]
 		[else 
 		[begin ;seems file IO still needs to be implemented in an imperative way, though I tried functional way.
-			(fprintf out "\t~a\n" (car db)) 
+			(fprintf out "\t~s\n" (car db)) 
 			(printloop out (cdr db))]]))
 
 (define save_map
@@ -152,11 +165,13 @@
 		(let ([dbpath (car dbpath)])
 			(if
 			(string? dbpath)
-			(call-with-output-file dbpath  (lambda (out) (begin
+			(let ([out (open-file-output-port dbpath (file-options no-fail) 'block transcoder)])
+				(begin
 				[fprintf out "(\n" ]
 				[printloop out db]
-				[fprintf out ")" ])))
-			(error "not a string, specify a string for the path")))])))
+				[fprintf out ")" ]
+				[close-output-port out]))
+			(display "not a string, specify a string for the path")))])))
 
 (define initmap (lambda () (get_map_with_updated_stroke '() '())))
 
@@ -168,11 +183,7 @@
 
 (define save save_default_map_to_default_path)
 
-(define-syntax s (syntax-rules () ([_ CJKch] [selectsk (read (open-input-string (format "~a~a" (string #\# #\\) (quote CJKch))))])))
+(define-syntax s (syntax-rules () ([_ CJKch] [selectsk (string-ref (symbol->string (quote CJKch)) 0)])))
 
-(define-syntax u (syntax-rules () ([_ CJKch sk] [update_default_map_with_stroke (read (open-input-string (format "~a~a" (string #\# #\\) (quote CJKch)))) sk])))
-
-;(define-syntax s select_stroke_in_default_map_with_charater)
-
-;(define-syntax hexsk (syntax-rules () ([_ CJKunicodeHex] [selectsk (read (open-input-string (format "~a~a" (string #\# #\x) (quote CJKunicodeHex))))])))
+(define-syntax u (syntax-rules () ([_ CJKch sk] [update_default_map_with_stroke (string-ref (symbol->string (quote CJKch)) 0) sk])))
 ;;

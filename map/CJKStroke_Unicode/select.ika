@@ -1,0 +1,14 @@
+#! /usr/bin/ikarus --script
+
+(import (rnrs))
+(load "./stroke.ss")
+
+(define rpl (lambda () 
+	(let ([sym (read)])
+	(cond
+	([eof-object?  sym] #f);#f means exit in a script
+	(else [let ([str  (format "~a" (selectsk  (string-ref (symbol->string sym) 0)))])
+		(printf "~a\n" (substring str 1 (- (string-length str) 1)))
+		(rpl)])
+))))
+(rpl)

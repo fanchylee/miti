@@ -1,9 +1,0 @@
-
-(load "./stroke.ss")
-;(define (select CJKch) [selectsk (read (open-input-string (format "~a~a" (string #\# #\\) CJKch)))])
-(define rpl (lambda () 
-	(let ([str  (format "~a" (selectsk (read (open-input-string (format "~a~a" (string #\# #\\) (read))))))])
-		(printf "~a\n" (substring str 1 (- (string-length str) 1)))
-;		(rpl)
-)))
-(rpl)

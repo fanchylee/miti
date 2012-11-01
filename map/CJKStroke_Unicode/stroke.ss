@@ -44,12 +44,11 @@
 ;
 (define getstroke
 	(lambda (l)
-	(car (cdr l))))
+	(car (cddr l))))
 ;;;
-
 (define newstrokerecord
 	(lambda (sk record)
-	(list (car record) sk)))
+	(list (car record) (cadr record) sk)))
 	
 
 (define hasnumber? (lambda (x) 
@@ -148,30 +147,34 @@
 
 			[else (display "illegal auguments")]))])))
 
-(define (printloop out db)
+(define (printloop outport db)
 	(cond 
-		[(null? (cdr db)) (fprintf out "\t~a\n" (car db))]
-		[else 
-		[begin ;seems file IO still needs to be implemented in an imperative way, though I tried functional way.
-			(fprintf out "\t~s\n" (car db)) 
-			(printloop out (cdr db))]]))
+		[(null? (cdr db)) (begin 
+			[put-string outport "\t"]
+			[write (car db) outport]
+			[put-string outport "\n"])]
+		[else (begin ;seems file IO still needs to be implemented in an imperative way, though I tried functional way.
+			[put-string outport "\t"]
+			[write (car db) outport]
+			[put-string outport "\n"]
+			[printloop outport (cdr db)])]))
 
 (define save_map
 	(lambda (db . dbpath) 
 	(cond
-		[(null? dbpath) (save_map db "./CJK_Unified_Ideographs.lisp")]
+		[(null? dbpath) (save_map db *Default_Map_Path*)]
 
 		[else
 		(let ([dbpath (car dbpath)])
 			(if
-			(string? dbpath)
-			(let ([out (open-file-output-port dbpath (file-options no-fail) 'block transcoder)])
+			[string? dbpath]
+			[let ([outport (open-file-output-port dbpath (file-options no-fail) 'block transcoder)])
 				(begin
-				[fprintf out "(\n" ]
-				[printloop out db]
-				[fprintf out ")" ]
-				[close-output-port out]))
-			(display "not a string, specify a string for the path")))])))
+				[put-string  outport "(\n"]
+				[printloop outport db]
+				[put-char outport #\)]
+				[close-output-port outport])]
+			[display "not a string, specify a string for the path"]))])))
 
 (define initmap (lambda () (get_map_with_updated_stroke '() '())))
 

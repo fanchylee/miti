@@ -1,4 +1,7 @@
 #! /usr/bin/ikarus --script
+;
+;(descirption "tested with ikarus , should work with petite i.e. chez scheme")
+;
 
 (import (rnrs))
 (load "./stroke.ss")
@@ -20,3 +23,5 @@
 	(cond 
 	[(null? command-line-arg) (rpl)]
 	[else (printstrokes (current-output-port) (car command-line-arg))]))
+
+;
